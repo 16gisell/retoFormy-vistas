@@ -4,7 +4,7 @@ class FeatureService{
     }
 
     async getFeature(page, perPage, filter){
-        const respuesta= await fetch(`${this.URI}?page=${page}&per_page=${perPage}&filter${filter}`);
+        const respuesta= await fetch(`${this.URI}?page=${page}&per_page=${perPage}&filter=${filter}`);
         const recargas =respuesta.json();
         return recargas;
     }
@@ -15,10 +15,11 @@ class FeatureService{
         return recargas;
     }
 
-    async putFeature(id, datos){
+    async putFeature(id, datos) {
+        console.log(datos)
         const dele = await fetch(this.URI+'/'+id,{
             method:'PUT',
-            body:datos,
+            body:JSON.stringify(datos),
             headers:{
                 'content-type': 'application/json'
             }            

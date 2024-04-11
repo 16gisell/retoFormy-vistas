@@ -11,6 +11,9 @@
                       header-classes="bg-white pb-5"
                       body-classes="px-lg-5 py-lg-5"
                       class="border-0">
+                      <button type="button" class="close" @click="closeModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <template>
                         <div class="text-muted text-center mb-3">
                             <small>Accion para ejecutar tarea</small>
@@ -23,16 +26,12 @@
                         <div class="text-center text-muted mb-4">
                             <small>Seguro de ejecutarla?</small>
                         </div>
-                        <!-- <div class="alert alert-success" role="alert" v-if="send === true">
-                                {{messagesTrue}} <i class='bx bxs-wink-smile'></i>.
-                        </div>
-                        <div class="alert alert-danger" role="alert" v-if="Notsend === true">
-                            {{messagesFalse}} 
-                            <i class='bx bxs-wink-smile'></i>.
-                        </div> -->
                         <form role="form"  @submit.prevent="Confirm" >                            
                             <button class="btn btn-primary btn-lg btn-block btnG" v-if="!activ">Continuar</button>
                             <img src="../../../../public/img/icons/common/cargando.gif" alt="" class="imagen-gif" v-if="activ">
+                            <div class="text-center text-muted mb-4" v-if="activ">
+                                <small>Momentaneamente no esta corriendo la tarea desde el front</small>
+                            </div>
                         </form>
                     </template>
                 </card>
@@ -50,12 +49,8 @@
         data() {
             return {
             modals: {
-                modal1: false,
-                modal2: false,
-                modal3: false,    
+                modal3: false,   
             },
-                messagesTrue:"",
-                messagesFalse:"",
                 activ:false,
 
             };
@@ -63,8 +58,15 @@
         created(){              
         },
     methods: {
+        closeModal() {
+            this.modals.modal3 = false
+            this.activ = false
+        }, 
         Confirm() {
             this.activ = true
+            setTimeout(() => {
+                this.closeModal() 
+            }, 2000);  
         }
     }
     };
