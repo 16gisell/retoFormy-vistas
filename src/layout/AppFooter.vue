@@ -6,7 +6,7 @@
                 <div class="col-md-6">
                     <div class="copyright">
                         &copy; {{year}}
-                        <p>Modo Prueba billetera</p>
+                        <p>Modo Prueba reto formi</p>
                         <p>Creado por <spam class="text-center" style="color: #d417d4;text-decoration: underline;">GissHernandez</spam> </p>
                     </div>
                 </div>
